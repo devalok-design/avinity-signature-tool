@@ -140,7 +140,7 @@ function Header() {
         >
           <img src={DEVALOK_WORDMARK_URL} alt="Devalok" className="h-12" />
         </a>
-        <div className="text-surface-fg-subtle select-none">×</div>
+        <div className="bg-surface-border-subtle h-6 w-px" />
         <img
           src="/avinity-lockup.svg"
           alt="Avinity Health"
@@ -858,74 +858,56 @@ function SignatureHoundStep({
   onNext: () => void
   onBack: () => void
 }) {
+  function openAndAdvance() {
+    window.open(SH_TEMPLATE_URL, '_blank', 'noopener,noreferrer')
+    onNext()
+  }
+
   return (
     <div>
       <StepLabel>Step 4 — Signature Hound</StepLabel>
       <StepHeading>Fill in your details</StepHeading>
       <StepIntro>
-        Open the Avinity template and fill in your details.
+        Clicking the button below opens the Avinity template in a new tab. Fill in each of these fields there, then install.
       </StepIntro>
 
-      <div className="mb-ds-08">
-        <Button
-          asChild
-          startIcon={<IconExternalLink size={18} />}
-          style={{ background: 'var(--avinity-dark)', color: '#fff' }}
-        >
-          <a href={SH_TEMPLATE_URL} target="_blank" rel="noreferrer">
-            Open Avinity template in Signature Hound
-          </a>
-        </Button>
-      </div>
-
-      <Card>
+      <Card className="mb-ds-06">
         <CardContent className="pt-ds-06">
-          <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">
-            Fill these fields
+          <div className="text-surface-fg mb-ds-04 text-ds-base font-semibold">
+            Fields to fill in Signature Hound
           </div>
           <div className="space-y-ds-03">
-            <Field label="Name" hint="e.g. John Dove" />
-            <Field label="Job title" hint="e.g. Founder & Clinical Director" />
-            <Field label="Email" hint="e.g. emily@avinityhealth.com" />
-            <Field label="Phone" hint="Work phone" />
-            <Field label="Mobile" hint="Shows next to phone" />
-            <Field label="Scheduling Link" hint="Calendly or booking page URL" />
-            <Field
-              label="Profile Picture"
-              hint={<>Upload the <strong>transparent PNG</strong> from step 3</>}
-              highlight
-            />
+            {[
+              { label: 'Name', hint: 'e.g. Emily Dawson' },
+              { label: 'Job title', hint: 'e.g. Founder & Clinical Director | Avinity Health' },
+              { label: 'Email', hint: 'e.g. emily@avinityhealth.com' },
+              { label: 'Phone', hint: 'Work phone' },
+              { label: 'Mobile', hint: 'Shows next to phone' },
+              { label: 'Scheduling link', hint: 'Calendly or booking page URL' },
+            ].map(({ label, hint }) => (
+              <div key={label} className="flex items-baseline gap-ds-03">
+                <span className="text-accent-9 shrink-0 font-bold">→</span>
+                <span className="text-surface-fg text-ds-base font-semibold">{label}</span>
+                <span className="text-surface-fg-muted text-ds-sm">{hint}</span>
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
 
-      <NavBar onBack={onBack} onNext={onNext} nextLabel="Next: install" />
+      <Alert color="warning" title="Don't forget your portrait">
+        In the Profile Picture field, upload the transparent PNG you downloaded in Step 3.
+      </Alert>
+
+      <NavBar
+        onBack={onBack}
+        onNext={openAndAdvance}
+        nextLabel="Open Signature Hound"
+      />
     </div>
   )
 }
 
-function Field({
-  label,
-  hint,
-  highlight = false,
-}: {
-  label: string
-  hint: React.ReactNode
-  highlight?: boolean
-}) {
-  return (
-    <div
-      className={`rounded-control-inner border p-ds-04 ${
-        highlight
-          ? 'border-accent-9 bg-accent-3/30'
-          : 'border-surface-border-subtle bg-surface-base'
-      }`}
-    >
-      <div className="text-surface-fg text-ds-base font-semibold">{label}</div>
-      <div className="text-surface-fg-muted mt-ds-01 text-ds-sm">{hint}</div>
-    </div>
-  )
-}
 
 // ============================================================================
 // Step 5 — Install
