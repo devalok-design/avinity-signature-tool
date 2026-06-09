@@ -242,30 +242,68 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       <StepLabel>Step 1 — Welcome</StepLabel>
       <StepHeading>Your Avinity email signature</StepHeading>
       <StepIntro>
-        Set up your branded Avinity Health email signature in about 5 minutes.
+        Every email you send is a touchpoint. This gets your signature looking sharp, on-brand, and installed — in about 5 minutes.
       </StepIntro>
 
-      <Card>
-        <CardContent className="pt-ds-06">
-          <ol className="space-y-ds-03 text-ds-base">
-            {[
-              'Pick a photo (we\'ll show you what works best)',
-              'Crop it and remove the background',
-              'Fill in your details in Signature Hound',
-              'Install in Gmail, Outlook, or Apple Mail',
-            ].map((text, i) => (
-              <li key={i} className="flex items-center gap-ds-03">
-                <span className="bg-accent-3 text-accent-9 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ds-sm font-bold">
-                  {i + 1}
-                </span>
-                <span className="text-surface-fg">{text}</span>
-              </li>
-            ))}
-          </ol>
-        </CardContent>
-      </Card>
+      {/* Email preview mock */}
+      <div className="mb-ds-08">
+        <p className="text-surface-fg-muted mb-ds-03 text-ds-sm font-medium">
+          Here's what you'll have at the end
+        </p>
+        <div className="bg-surface-overlay border-surface-border rounded-xl overflow-hidden shadow-md">
+          {/* Mock email chrome */}
+          <div className="border-surface-border-subtle bg-surface-base flex items-center gap-ds-02 border-b px-ds-05 py-ds-03">
+            <div className="flex gap-1.5">
+              <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
+              <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
+              <span className="h-3 w-3 rounded-full bg-[#28C840]" />
+            </div>
+            <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded-md px-ds-05 py-1 text-ds-xs">
+              New Message — Gmail
+            </div>
+          </div>
+          {/* Email body area */}
+          <div className="px-ds-06 pt-ds-05 pb-ds-06">
+            <div className="text-surface-fg-muted mb-ds-04 space-y-1 border-b border-dashed pb-ds-04 text-ds-xs">
+              <div><span className="font-semibold">To:</span> team@avinity.com</div>
+              <div><span className="font-semibold">Subject:</span> Following up on our conversation</div>
+            </div>
+            <p className="text-surface-fg-muted mb-ds-05 text-ds-sm">Hi Sarah, great speaking with you earlier…</p>
+            <div className="border-surface-border-subtle border-t pt-ds-05">
+              <img
+                src="/example-signature.png"
+                alt="Example Avinity Health email signature"
+                className="max-w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <NavBar onNext={onNext} nextLabel="Start" hideBack />
+      {/* Steps */}
+      <div className="mb-ds-08">
+        <p className="text-surface-fg-muted mb-ds-04 text-ds-sm font-medium">How it works</p>
+        <div className="grid gap-ds-03 sm:grid-cols-2">
+          {[
+            { n: 1, title: 'Pick a photo', desc: "We'll show you what makes a great portrait" },
+            { n: 2, title: 'Prep your portrait', desc: 'Crop it and remove the background automatically' },
+            { n: 3, title: 'Fill in your details', desc: 'Name, title, and contact info in Signature Hound' },
+            { n: 4, title: 'Install in your email', desc: 'Works with Gmail, Outlook, and Apple Mail' },
+          ].map(({ n, title, desc }) => (
+            <div key={n} className="bg-surface-overlay border-surface-border flex gap-ds-04 rounded-xl border p-ds-05">
+              <span className="bg-accent-3 text-accent-9 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ds-sm font-bold">
+                {n}
+              </span>
+              <div>
+                <div className="text-surface-fg mb-0.5 text-ds-base font-semibold">{title}</div>
+                <div className="text-surface-fg-muted text-ds-sm leading-snug">{desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <NavBar onNext={onNext} nextLabel="Let's go" hideBack />
     </div>
   )
 }
