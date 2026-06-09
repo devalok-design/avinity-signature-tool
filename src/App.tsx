@@ -5,7 +5,6 @@ import { Stepper, Step, StepperContent } from '@devalok/shilp-sutra/ui/stepper'
 import { Button } from '@devalok/shilp-sutra/ui/button'
 import { Card, CardContent } from '@devalok/shilp-sutra/ui/card'
 import { Alert } from '@devalok/shilp-sutra/ui/alert'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@devalok/shilp-sutra/ui/tabs'
 import {
   IconUpload,
   IconDownload,
@@ -882,79 +881,42 @@ function InstallStep({ onNext, onBack }: { onNext: () => void; onBack: () => voi
   return (
     <div>
       <StepLabel>Step 5 — Install</StepLabel>
-      <StepHeading>Add it to your email</StepHeading>
+      <StepHeading>Install from Signature Hound</StepHeading>
       <StepIntro>
-        Signature Hound has a one-click installer for most mail clients. Pick yours
-        for the quickest path.
+        Head back to your Signature Hound tab. Hit the <strong>Install</strong> button
+        — it'll walk you through adding the signature to Gmail, Outlook, or Apple Mail.
       </StepIntro>
 
-      <Tabs defaultValue="gmail">
-        <TabsList>
-          <TabsTrigger value="gmail">Gmail</TabsTrigger>
-          <TabsTrigger value="outlook">Outlook</TabsTrigger>
-          <TabsTrigger value="apple">Apple Mail</TabsTrigger>
-        </TabsList>
+      <div className="mb-ds-06">
+        <Button
+          asChild
+          startIcon={<IconExternalLink />}
+          style={{ background: 'var(--avinity-dark)', color: '#fff' }}
+        >
+          <a href={SH_TEMPLATE_URL} target="_blank" rel="noreferrer">
+            Open Signature Hound
+          </a>
+        </Button>
+      </div>
 
-        <TabsContent value="gmail">
-          <Card>
-            <CardContent>
-              <Instructions
-                steps={[
-                  'In Signature Hound, click Install → Connect with Gmail. The one-click OAuth flow writes the signature straight into your Gmail settings.',
-                  'Open Gmail → Compose. Your new signature should appear at the bottom.',
-                  'If it doesn\'t auto-attach: Settings → See all settings → Signature → set it as default for new mails AND replies. Save.',
-                  'Send yourself a test email. Open it on desktop and mobile.',
-                ]}
-              />
-              <Alert color="info" title="Heads up — 10K char cap">
-                Gmail blocks signatures over 10,000 characters. Our template is well under.
-              </Alert>
-              <DocsLink href="https://signaturehound.com/help" />
-            </CardContent>
-          </Card>
-        </TabsContent>
+      <Card>
+        <CardContent>
+          <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">
+            What to do in Signature Hound
+          </div>
+          <Instructions
+            steps={[
+              'Click the Install button at the top of your signature.',
+              'Choose your mail client — Gmail, Outlook, Apple Mail, and others are all supported.',
+              'Follow the on-screen steps. Gmail uses a one-click OAuth flow; others guide you through a paste or file method.',
+              'Once installed, send yourself a test email to confirm it looks right.',
+            ]}
+          />
+          <DocsLink href="https://signaturehound.com/help" />
+        </CardContent>
+      </Card>
 
-        <TabsContent value="outlook">
-          <Card>
-            <CardContent>
-              <Instructions
-                steps={[
-                  'In Signature Hound, click Install → pick your Outlook flavor (web, new desktop, classic, or Mac).',
-                  'Follow the on-screen paste instructions. For Outlook on the Web: Settings → Mail → Compose and reply → paste.',
-                  'Set defaults for new messages AND replies / forwards.',
-                  'Send yourself a test email.',
-                ]}
-              />
-              <Alert color="warning" title="Classic Outlook gotcha">
-                Outlook Classic (Windows) uses Word's HTML rendering — layouts can break unpredictably. If you see weird spacing, test in another client to confirm it's just Classic's quirk.
-              </Alert>
-              <DocsLink href="https://signaturehound.com/help" />
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="apple">
-          <Card>
-            <CardContent>
-              <Instructions
-                steps={[
-                  'In Signature Hound, click Install → Apple Mail. The walkthrough shows you the file-swap method (paste-in strips HTML).',
-                  'Quit Mail.app fully (Cmd+Q) before editing.',
-                  'Edit the .mailsignature file as instructed, then LOCK it (Get Info → Locked) so Mail doesn\'t overwrite it.',
-                  'In Mail Settings → Signatures: uncheck "Always match my default message font" or it\'ll override your styles.',
-                  'Reopen Mail and send a test email.',
-                ]}
-              />
-              <Alert color="warning" title="Preview lies">
-                The signature preview in Mail's settings often looks broken — it's a known bug. Send a test email instead of trusting the preview.
-              </Alert>
-              <DocsLink href="https://signaturehound.com/help" />
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
-
-      <NavBar onBack={onBack} onNext={onNext} nextLabel="I installed it" />
+      <NavBar onBack={onBack} onNext={onNext} nextLabel="Installed — I'm done" />
     </div>
   )
 }
