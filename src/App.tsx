@@ -224,18 +224,18 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
 
       <Card>
         <CardContent className="pt-ds-06">
-          <ol className="space-y-ds-02 text-ds-sm">
+          <ol className="space-y-ds-03 text-ds-base">
             {[
               'Photo tips',
               'Prep your portrait',
               'Fill in your details',
               'Install in your email',
             ].map((text, i) => (
-              <li key={i} className="flex items-start gap-ds-03">
-                <span className="bg-accent-3 text-accent-9 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-ds-xs font-bold">
+              <li key={i} className="flex items-center gap-ds-03">
+                <span className="bg-accent-3 text-accent-9 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ds-sm font-bold">
                   {i + 1}
                 </span>
-                <span className="text-surface-fg-muted">{text}</span>
+                <span className="text-surface-fg">{text}</span>
               </li>
             ))}
           </ol>
@@ -610,19 +610,52 @@ function CropPanel({
 }
 
 function ProcessingPanel({ progress }: { progress: string }) {
+  const downloadMatch = progress.match(/Downloading model[^\d]*(\d+)%/)
+  const downloadPct = downloadMatch ? parseInt(downloadMatch[1]) : null
+  const isDownloading = progress.includes('Downloading') || progress.includes('Loading background')
+  const isProcessing = progress.includes('Removing') || progress.includes('Rounding') || progress.includes('Cropping')
+
+  const stage = isDownloading
+    ? { label: 'Downloading model', hint: 'First time only · ~24 MB · usually 10–30s', pct: downloadPct }
+    : isProcessing
+      ? { label: 'Removing background', hint: 'Usually 5–15s', pct: null }
+      : { label: 'Preparing…', hint: null, pct: null }
+
   return (
     <Card>
       <CardContent className="pt-ds-06">
-        <div className="flex flex-col items-center justify-center px-ds-06 py-ds-12">
+        <div className="flex flex-col items-center justify-center px-ds-06 py-ds-10">
           <div className="bg-accent-3 text-accent-9 mb-ds-05 rounded-full p-ds-04">
             <IconSparkles size={32} strokeWidth={1.75} className="animate-pulse" />
           </div>
-          <div className="text-surface-fg mb-ds-02 text-ds-lg font-semibold">
-            Working on it…
+          <div className="text-surface-fg mb-ds-01 text-ds-lg font-semibold">
+            {stage.label}
           </div>
-          <div className="text-surface-fg-muted text-ds-sm">
-            {progress || 'Removing background'}
-          </div>
+          {stage.hint && (
+            <div className="text-surface-fg-subtle mb-ds-05 text-ds-xs">
+              {stage.hint}
+            </div>
+          )}
+          {stage.pct !== null ? (
+            <div className="w-full max-w-xs">
+              <div className="bg-surface-border-subtle mb-ds-02 h-2 w-full overflow-hidden rounded-full">
+                <div
+                  className="h-full rounded-full transition-all duration-300"
+                  style={{ width: `${stage.pct}%`, background: 'var(--avinity-dark)' }}
+                />
+              </div>
+              <div className="text-surface-fg-subtle text-center text-ds-xs">{stage.pct}%</div>
+            </div>
+          ) : isProcessing ? (
+            <div className="w-full max-w-xs">
+              <div className="bg-surface-border-subtle h-2 w-full overflow-hidden rounded-full">
+                <div
+                  className="h-full w-full animate-pulse rounded-full"
+                  style={{ background: 'var(--avinity-dark)', opacity: 0.6 }}
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
       </CardContent>
     </Card>
