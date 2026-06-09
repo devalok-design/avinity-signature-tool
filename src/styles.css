@@ -13,6 +13,23 @@
 }
 
 html, body, #root { height: 100%; }
+
+/* react-easy-crop crop area overlay — guides user to align head + shoulders */
+.crop-guide {
+  position: relative;
+}
+.crop-guide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/crop-guide.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
 body {
   background: var(--avinity-bg);
   color: var(--avinity-ink);

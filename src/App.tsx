@@ -252,6 +252,8 @@ function CropStep({
             onZoomChange={onZoomChange}
             onCropComplete={onCropComplete}
             objectFit="contain"
+            cropAreaClassName="crop-guide"
+            showGrid={false}
           />
         </div>
         <div className="border-avinity-blue/60 flex items-center gap-4 border-t px-6 py-4">
