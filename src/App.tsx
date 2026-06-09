@@ -115,7 +115,11 @@ export function App() {
           )}
           {stepIdx === 3 && <SignatureHoundStep onNext={next} onBack={back} />}
           {stepIdx === 4 && <InstallStep onNext={next} onBack={back} />}
-          {stepIdx === 5 && <DoneStep onRestart={() => jumpTo('welcome')} />}
+          {stepIdx === 5 && <DoneStep onRestart={() => {
+            setCutoutUrl(null)
+            setHasDownloaded(false)
+            jumpTo('welcome')
+          }} />}
         </StepperContent>
       </main>
 
@@ -315,6 +319,9 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
         >
           Already have your photo ready? Skip to Signature Hound →
         </a>
+        <p className="text-surface-fg-subtle mt-1 text-ds-xs">
+          You'll need to upload your portrait PNG manually in the Profile Picture field.
+        </p>
       </div>
     </div>
   )
@@ -498,6 +505,7 @@ function PhotoPrepStep({
     } catch (err) {
       console.error(err)
       setError(err instanceof Error ? err.message : 'Something went wrong.')
+      setProgress('')
       setStage('cropping')
     }
   }
@@ -931,7 +939,7 @@ function InstallStep({ onNext, onBack }: { onNext: () => void; onBack: () => voi
       <StepLabel>Step 5 — Install</StepLabel>
       <StepHeading>Install your signature</StepHeading>
       <StepIntro>
-        Go back to Signature Hound and hit <strong>Install</strong>.
+        If you haven't finished filling in your details in the Signature Hound tab, do that first — then hit <strong>Install</strong>.
       </StepIntro>
 
       <div className="mb-ds-06">
