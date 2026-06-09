@@ -227,10 +227,10 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
         <CardContent className="pt-ds-06">
           <ol className="space-y-ds-03 text-ds-base">
             {[
-              'Photo tips',
-              'Prep your portrait',
-              'Fill in your details',
-              'Install in your email',
+              'Pick a photo (we\'ll show you what works best)',
+              'Crop it and remove the background',
+              'Fill in your details in Signature Hound',
+              'Install in Gmail, Outlook, or Apple Mail',
             ].map((text, i) => (
               <li key={i} className="flex items-center gap-ds-03">
                 <span className="bg-accent-3 text-accent-9 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ds-sm font-bold">
