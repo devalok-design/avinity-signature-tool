@@ -313,7 +313,7 @@ function TipCard({
         <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">{title}</div>
         <ul className="space-y-ds-02">
           {items.map((item, i) => (
-            <li key={i} className="flex items-start gap-ds-02 text-ds-sm">
+            <li key={i} className="flex items-start gap-ds-02 text-ds-base">
               <span
                 className={`mt-0.5 font-bold ${isGood ? 'text-success-9' : 'text-error-9'}`}
               >
@@ -526,7 +526,7 @@ function UploadZone({
         <div className="text-surface-fg mb-ds-02 text-ds-lg font-semibold">
           Drop your photo here
         </div>
-        <div className="text-surface-fg-muted mb-ds-05 text-ds-sm">
+        <div className="text-surface-fg-muted mb-ds-05 text-ds-base">
           JPG, PNG, WebP · max 50 MB
         </div>
         <Button onClick={() => inputRef.current?.click()}>Choose a photo</Button>
@@ -633,7 +633,7 @@ function ProcessingPanel({ progress }: { progress: string }) {
             {stage.label}
           </div>
           {stage.hint && (
-            <div className="text-surface-fg-subtle mb-ds-05 text-ds-xs">
+            <div className="text-surface-fg-subtle mb-ds-05 text-ds-sm">
               {stage.hint}
             </div>
           )}
@@ -861,8 +861,8 @@ function Field({
           : 'border-surface-border-subtle bg-surface-base'
       }`}
     >
-      <div className="text-surface-fg text-ds-sm font-semibold">{label}</div>
-      <div className="text-surface-fg-muted mt-ds-01 text-ds-xs">{hint}</div>
+      <div className="text-surface-fg text-ds-base font-semibold">{label}</div>
+      <div className="text-surface-fg-muted mt-ds-01 text-ds-sm">{hint}</div>
     </div>
   )
 }
@@ -919,7 +919,7 @@ function Instructions({ steps }: { steps: string[] }) {
           <span className="bg-accent-9 text-accent-fg flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ds-xs font-bold">
             {i + 1}
           </span>
-          <span className="text-surface-fg-muted pt-0.5 text-ds-sm leading-relaxed">
+          <span className="text-surface-fg-muted pt-0.5 text-ds-base leading-relaxed">
             {step}
           </span>
         </li>
@@ -930,7 +930,7 @@ function Instructions({ steps }: { steps: string[] }) {
 
 function DocsLink({ href }: { href: string }) {
   return (
-    <div className="mt-ds-04 text-ds-xs">
+    <div className="mt-ds-04 text-ds-sm">
       <a
         href={href}
         target="_blank"
@@ -973,7 +973,7 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
 
       <Card className="mx-auto mb-ds-08 max-w-xl text-left">
         <CardContent className="pt-ds-06">
-          <ul className="space-y-ds-02 text-ds-sm">
+          <ul className="space-y-ds-02 text-ds-base">
             {[
               'Desktop — does the signature look right?',
               'Mobile — still looking sharp?',
