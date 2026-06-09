@@ -108,14 +108,14 @@ function Header() {
           target="_blank"
           rel="noreferrer"
         >
-          <img src={DEVALOK_WORDMARK_URL} alt="Devalok" className="h-6" />
+          <img src={DEVALOK_WORDMARK_URL} alt="Devalok" className="h-12" />
         </a>
         <div className="text-surface-fg-subtle select-none">×</div>
         <div className="flex items-center gap-ds-02">
           <img
             src="/avinity-mark.svg"
             alt=""
-            className="h-7 w-7"
+            className="h-10 w-10"
             style={{
               filter:
                 'brightness(0) saturate(100%) invert(20%) sepia(54%) saturate(917%) hue-rotate(151deg) brightness(95%) contrast(101%)',
