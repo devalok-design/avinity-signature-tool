@@ -16,6 +16,7 @@ import {
   IconCheck,
   IconExternalLink,
   IconMail,
+  IconDeviceDesktop,
 } from '@tabler/icons-react'
 
 const SH_TEMPLATE_URL = 'https://signaturehound.com/signature/lkc2glmpv2p3kf'
@@ -33,7 +34,19 @@ const STEPS = [
 
 type StepId = (typeof STEPS)[number]['id']
 
+function useMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return isMobile
+}
+
 export function App() {
+  const isMobile = useMobile()
   const [stepIdx, setStepIdx] = useState(0)
   const [cutoutUrl, setCutoutUrl] = useState<string | null>(null)
   const [hasDownloaded, setHasDownloaded] = useState(false)
@@ -50,6 +63,22 @@ export function App() {
   function jumpTo(id: StepId) {
     const idx = STEPS.findIndex((s) => s.id === id)
     if (idx >= 0) setStepIdx(idx)
+  }
+
+  if (isMobile) {
+    return (
+      <div className="bg-surface-base flex min-h-screen flex-col items-center justify-center px-ds-06 text-center">
+        <div className="bg-accent-3 text-accent-9 mx-auto mb-ds-06 flex h-16 w-16 items-center justify-center rounded-full">
+          <IconDeviceDesktop size={32} />
+        </div>
+        <h1 className="text-surface-fg mb-ds-03 text-ds-2xl font-bold tracking-tight">
+          Open this on your laptop or desktop
+        </h1>
+        <p className="text-surface-fg-muted max-w-xs text-ds-base leading-relaxed">
+          Setting up your email signature involves uploading a photo and filling in a form — it works best on a computer.
+        </p>
+      </div>
+    )
   }
 
   return (
