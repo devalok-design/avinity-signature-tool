@@ -252,7 +252,7 @@ function CropStep({
             onZoomChange={onZoomChange}
             onCropComplete={onCropComplete}
             objectFit="contain"
-            cropAreaClassName="crop-guide"
+            classes={{ cropAreaClassName: 'crop-guide' }}
             showGrid={false}
           />
         </div>
