@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import confetti from 'canvas-confetti'
 import Cropper, { type Area } from 'react-easy-crop'
 import { removeBackground } from '@imgly/background-removal'
 import { Stepper, Step, StepperContent } from '@devalok/shilp-sutra/ui/stepper'
@@ -947,6 +948,17 @@ function DocsLink({ href }: { href: string }) {
 // ============================================================================
 
 function DoneStep({ onRestart }: { onRestart: () => void }) {
+  useEffect(() => {
+    const fire = (opts: confetti.Options) =>
+      confetti({ zIndex: 999, disableForReducedMotion: true, ...opts })
+
+    fire({ particleCount: 60, spread: 70, origin: { y: 0.6 }, colors: ['#015A66', '#1FA9B3', '#CFE6F7', '#ffffff'] })
+    const t1 = setTimeout(() => fire({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#015A66', '#1FA9B3', '#CFE6F7'] }), 250)
+    const t2 = setTimeout(() => fire({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#015A66', '#1FA9B3', '#CFE6F7'] }), 400)
+
+    return () => { clearTimeout(t1); clearTimeout(t2) }
+  }, [])
+
   return (
     <div className="text-center">
       <div className="bg-accent-3 text-accent-9 mx-auto mb-ds-05 flex h-16 w-16 items-center justify-center rounded-full">
