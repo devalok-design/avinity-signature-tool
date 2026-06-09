@@ -22,6 +22,7 @@ import {
 const SH_TEMPLATE_URL = 'https://signaturehound.com/signature/lkc2glmpv2p3kf'
 const DEVALOK_WORDMARK_URL =
   'https://devalok-public-assets.s3.ap-south-1.amazonaws.com/brand/devalok/logos/wordmark-brand.svg'
+const AVINITY_COLORS = ['#015A66', '#1FA9B3', '#CFE6F7', '#ffffff']
 
 const STEPS = [
   { id: 'welcome', label: 'Welcome' },
@@ -144,6 +145,7 @@ function Header() {
           <img
             src="/avinity-mark.svg"
             alt=""
+            aria-hidden="true"
             className="h-10 w-10"
             style={{
               filter:
@@ -719,7 +721,7 @@ function ReadyPanel({
               backgroundPosition: '0 0, 0 8px, 8px -8px, 8px 0',
             }}
           >
-            <img src={cutoutUrl} alt="" className="max-h-72" />
+            <img src={cutoutUrl} alt="" aria-hidden="true" className="max-h-72" />
           </div>
         </Card>
 
@@ -981,9 +983,9 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
     const fire = (opts: confetti.Options) =>
       confetti({ zIndex: 999, disableForReducedMotion: true, ...opts })
 
-    fire({ particleCount: 60, spread: 70, origin: { y: 0.6 }, colors: ['#015A66', '#1FA9B3', '#CFE6F7', '#ffffff'] })
-    const t1 = setTimeout(() => fire({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#015A66', '#1FA9B3', '#CFE6F7'] }), 250)
-    const t2 = setTimeout(() => fire({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#015A66', '#1FA9B3', '#CFE6F7'] }), 400)
+    fire({ particleCount: 60, spread: 70, origin: { y: 0.6 }, colors: AVINITY_COLORS })
+    const t1 = setTimeout(() => fire({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0 }, colors: AVINITY_COLORS }), 250)
+    const t2 = setTimeout(() => fire({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1 }, colors: AVINITY_COLORS }), 400)
 
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
