@@ -242,38 +242,38 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       <StepLabel>Step 1 — Welcome</StepLabel>
       <StepHeading>Your Avinity email signature</StepHeading>
 
-      <div className="flex flex-col gap-ds-05 lg:flex-row lg:items-start mb-ds-06">
+      <div className="flex flex-col gap-ds-06 lg:flex-row lg:items-start mb-ds-07">
         {/* Email preview mock */}
         <div className="lg:flex-1 min-w-0">
-          <p className="text-surface-fg-muted mb-ds-02 text-ds-xs font-medium uppercase tracking-wide">
+          <p className="text-surface-fg-muted mb-ds-03 text-ds-sm font-medium">
             What you'll have at the end
           </p>
-          <div className="bg-surface-overlay border-surface-border rounded-xl overflow-hidden shadow-sm">
+          <div className="bg-surface-overlay border-surface-border rounded-xl overflow-hidden shadow-md">
             {/* Mock email chrome */}
-            <div className="border-surface-border-subtle bg-surface-base flex items-center gap-ds-02 border-b px-ds-04 py-2">
+            <div className="border-surface-border-subtle bg-surface-base flex items-center gap-ds-02 border-b px-ds-05 py-ds-03">
               <div className="flex gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+                <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
+                <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
+                <span className="h-3 w-3 rounded-full bg-[#28C840]" />
               </div>
-              <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded px-ds-04 py-0.5 text-ds-xs">
+              <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded-md px-ds-05 py-1 text-ds-xs">
                 Gmail — New Message
               </div>
             </div>
             {/* Email body */}
-            <div className="px-ds-05 py-ds-04">
-              <div className="text-surface-fg-muted mb-ds-03 space-y-0.5 border-b border-dashed pb-ds-03 text-ds-xs">
+            <div className="px-ds-06 pt-ds-05 pb-ds-05">
+              <div className="text-surface-fg-muted mb-ds-04 space-y-1 border-b border-dashed pb-ds-04 text-ds-sm">
                 <div><span className="font-semibold">To:</span> sarah.miller@gmail.com</div>
                 <div><span className="font-semibold">Subject:</span> Your care plan + next steps</div>
               </div>
-              <p className="text-surface-fg-muted mb-ds-04 text-ds-xs leading-relaxed">
+              <p className="text-surface-fg-muted mb-ds-05 text-ds-sm leading-relaxed">
                 Hi Sarah, it was great meeting you today. I've outlined your care plan below — please review and reach out with any questions before our next session.
               </p>
-              <div className="border-surface-border-subtle border-t pt-ds-03">
+              <div className="border-surface-border-subtle border-t pt-ds-04">
                 <img
                   src="/example-signature.png"
                   alt="Example Avinity Health email signature"
-                  className="max-w-[380px] w-full"
+                  className="max-w-[480px] w-full"
                 />
               </div>
             </div>
@@ -281,22 +281,22 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
         </div>
 
         {/* Steps */}
-        <div className="lg:w-72 shrink-0">
-          <p className="text-surface-fg-muted mb-ds-02 text-ds-xs font-medium uppercase tracking-wide">How it works</p>
-          <div className="space-y-ds-02">
+        <div className="lg:w-80 shrink-0">
+          <p className="text-surface-fg-muted mb-ds-03 text-ds-sm font-medium">How it works</p>
+          <div className="space-y-ds-03">
             {[
               { n: 1, title: 'Pick a photo', desc: "We'll guide you on what works" },
               { n: 2, title: 'Prep your portrait', desc: 'Auto-crop and remove background' },
               { n: 3, title: 'Fill in your details', desc: 'Name, title, contact in Signature Hound' },
               { n: 4, title: 'Install in your email', desc: 'Gmail, Outlook, Apple Mail' },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-surface-overlay border-surface-border flex gap-ds-03 rounded-lg border p-ds-04">
-                <span className="bg-accent-3 text-accent-9 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ds-xs font-bold">
+              <div key={n} className="bg-surface-overlay border-surface-border flex gap-ds-04 rounded-xl border p-ds-05">
+                <span className="bg-accent-3 text-accent-9 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ds-sm font-bold">
                   {n}
                 </span>
                 <div>
-                  <div className="text-surface-fg text-ds-sm font-semibold">{title}</div>
-                  <div className="text-surface-fg-muted text-ds-xs leading-snug">{desc}</div>
+                  <div className="text-surface-fg text-ds-base font-semibold">{title}</div>
+                  <div className="text-surface-fg-muted text-ds-sm leading-snug">{desc}</div>
                 </div>
               </div>
             ))}
