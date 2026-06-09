@@ -217,31 +217,19 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
   return (
     <div>
       <StepLabel>Step 1 — Welcome</StepLabel>
-      <StepHeading>Create your Avinity email signature</StepHeading>
+      <StepHeading>Your Avinity email signature</StepHeading>
       <StepIntro>
-        Follow five quick steps to set up a branded Avinity Health signature in your
-        email. The whole thing takes about 5 minutes — we'll prep your portrait, walk
-        you through Signature Hound, and show you how to install it in your mail app.
+        Set up your branded Avinity Health email signature in about 5 minutes.
       </StepIntro>
-
-      <div className="grid gap-ds-04 mb-ds-06 sm:grid-cols-3">
-        <Stat label="Time" value="~5 min" />
-        <Stat label="Tools needed" value="Just a photo" />
-        <Stat label="Cost" value="Free" />
-      </div>
 
       <Card>
         <CardContent className="pt-ds-06">
-          <div className="text-surface-fg mb-ds-03 text-ds-base font-semibold">
-            What you'll do
-          </div>
           <ol className="space-y-ds-02 text-ds-sm">
             {[
-              'Read a few tips for a good portrait',
-              'Upload your photo, crop it, remove the background',
-              'Open the Avinity signature template in Signature Hound',
-              'Install the finished signature in your email app',
-              "Send yourself a test email and you're done",
+              'Photo tips',
+              'Prep your portrait',
+              'Fill in your details',
+              'Install in your email',
             ].map((text, i) => (
               <li key={i} className="flex items-start gap-ds-03">
                 <span className="bg-accent-3 text-accent-9 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-ds-xs font-bold">
@@ -254,21 +242,8 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
         </CardContent>
       </Card>
 
-      <NavBar onNext={onNext} nextLabel="Let's start" hideBack />
+      <NavBar onNext={onNext} nextLabel="Start" hideBack />
     </div>
-  )
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <Card>
-      <CardContent className="pt-ds-06">
-        <div className="text-surface-fg-subtle text-ds-xs font-semibold tracking-wide uppercase">
-          {label}
-        </div>
-        <div className="text-surface-fg mt-ds-01 text-ds-xl font-bold">{value}</div>
-      </CardContent>
-    </Card>
   )
 }
 
@@ -282,8 +257,7 @@ function PhotoTipsStep({ onNext, onBack }: { onNext: () => void; onBack: () => v
       <StepLabel>Step 2 — Photo tips</StepLabel>
       <StepHeading>Pick the right portrait</StepHeading>
       <StepIntro>
-        The cleaner the starting photo, the better the background removal works. A
-        few seconds of attention here saves a lot of fiddling later.
+        A clean photo gives better results. Takes 10 seconds to check.
       </StepIntro>
 
       <div className="gap-ds-05 grid sm:grid-cols-2">
@@ -291,34 +265,33 @@ function PhotoTipsStep({ onNext, onBack }: { onNext: () => void; onBack: () => v
           title="Do this"
           tone="good"
           items={[
-            'Plain or simple background (a white wall works great)',
-            'Face the camera, look at the lens',
-            'Even, soft lighting on your face',
+            'Plain or solid background',
+            'Face the camera',
+            'Even lighting',
             'Head and shoulders in frame',
-            'Sharp focus, no motion blur',
+            'Sharp, no blur',
           ]}
         />
         <TipCard
           title="Avoid this"
           tone="bad"
           items={[
-            'Group photos (we only need you)',
-            'Heavy shadows across your face',
-            'Backlit shots (window behind you)',
-            'Sunglasses or a hat that hides your face',
-            'Low-resolution screenshots',
+            'Group photos',
+            'Heavy shadows',
+            'Backlit (window behind you)',
+            'Sunglasses or hats',
+            'Low-resolution images',
           ]}
         />
       </div>
 
       <div className="mt-ds-05">
-        <Alert color="info" title="Pro tip">
-          A modern phone selfie in good light works perfectly. You don't need a
-          professional headshot.
+        <Alert color="info" title="Phone selfie works fine">
+          Good light is all you need. No professional headshot required.
         </Alert>
       </div>
 
-      <NavBar onBack={onBack} onNext={onNext} nextLabel="Got it, let's go" />
+      <NavBar onBack={onBack} onNext={onNext} nextLabel="Got it" />
     </div>
   )
 }
@@ -470,10 +443,9 @@ function PhotoPrepStep({
   return (
     <div>
       <StepLabel>Step 3 — Prep your photo</StepLabel>
-      <StepHeading>Crop and clean up your portrait</StepHeading>
+      <StepHeading>Prep your portrait</StepHeading>
       <StepIntro>
-        Upload your photo, fit it into the silhouette guide, and we'll remove the
-        background. Everything runs in your browser — your photo never gets uploaded.
+        Upload, crop, remove background. Runs in your browser — photo never leaves your device.
       </StepIntro>
 
       {error && (
@@ -511,10 +483,10 @@ function PhotoPrepStep({
         nextDisabled={stage !== 'ready' || !hasDownloaded}
         nextLabel={
           stage !== 'ready'
-            ? 'Finish prep first'
+            ? 'Complete prep first'
             : !hasDownloaded
-              ? 'Download your PNG first'
-              : 'Continue to Signature Hound'
+              ? 'Download first'
+              : 'Continue'
         }
       />
     </div>
@@ -554,7 +526,7 @@ function UploadZone({
           Drop your photo here
         </div>
         <div className="text-surface-fg-muted mb-ds-05 text-ds-sm">
-          or pick one from your computer · JPG, PNG, WebP · up to 50MB
+          JPG, PNG, WebP · max 50 MB
         </div>
         <Button onClick={() => inputRef.current?.click()}>Choose a photo</Button>
         <input
@@ -712,12 +684,12 @@ function ReadyPanel({
       </div>
 
       {hasDownloaded ? (
-        <Alert color="success" title="Saved!">
-          Keep the PNG handy — you'll upload it as your profile picture in the next step.
+        <Alert color="success" title="Saved">
+          Keep it handy — upload it as your profile picture in Signature Hound.
         </Alert>
       ) : (
         <Alert color="warning" title="Download to continue">
-          Download the PNG so you can upload it in Signature Hound.
+          Download the PNG to use in Signature Hound.
         </Alert>
       )}
     </div>
@@ -795,10 +767,9 @@ function SignatureHoundStep({
   return (
     <div>
       <StepLabel>Step 4 — Signature Hound</StepLabel>
-      <StepHeading>Fill in the Avinity template</StepHeading>
+      <StepHeading>Fill in your details</StepHeading>
       <StepIntro>
-        We've set up a Signature Hound template with all the Avinity branding pre-built.
-        Open it in a new tab and just fill in your details.
+        Open the Avinity template and fill in your details.
       </StepIntro>
 
       <div className="mb-ds-08">
@@ -819,32 +790,22 @@ function SignatureHoundStep({
             Fill these fields
           </div>
           <div className="space-y-ds-03">
-            <Field label="Name" hint="Your full name — e.g. John Dove" />
-            <Field label="Job title" hint="Your role — e.g. Founder & Clinical Director" />
-            <Field label="Email" hint="Your Avinity email — e.g. emily.dawson@avinityhealth.com" />
-            <Field label="Phone" hint="Main work phone" />
-            <Field label="Mobile" hint="Mobile number (shows next to phone)" />
-            <Field label="Scheduling Link" hint="Your Calendly / booking page URL — powers the 'Book a call' button" />
+            <Field label="Name" hint="e.g. John Dove" />
+            <Field label="Job title" hint="e.g. Founder & Clinical Director" />
+            <Field label="Email" hint="e.g. emily@avinityhealth.com" />
+            <Field label="Phone" hint="Work phone" />
+            <Field label="Mobile" hint="Shows next to phone" />
+            <Field label="Scheduling Link" hint="Calendly or booking page URL" />
             <Field
               label="Profile Picture"
-              hint={
-                <>
-                  Upload the <strong>transparent PNG</strong> you downloaded in step 3
-                </>
-              }
+              hint={<>Upload the <strong>transparent PNG</strong> from step 3</>}
               highlight
             />
           </div>
         </CardContent>
       </Card>
 
-      <div className="mt-ds-05">
-        <Alert color="info" title="When you're done">
-          Hit <em>Install</em> in Signature Hound — we'll cover that in the next step.
-        </Alert>
-      </div>
-
-      <NavBar onBack={onBack} onNext={onNext} nextLabel="Done — next: install" />
+      <NavBar onBack={onBack} onNext={onNext} nextLabel="Next: install" />
     </div>
   )
 }
@@ -880,10 +841,9 @@ function InstallStep({ onNext, onBack }: { onNext: () => void; onBack: () => voi
   return (
     <div>
       <StepLabel>Step 5 — Install</StepLabel>
-      <StepHeading>Install from Signature Hound</StepHeading>
+      <StepHeading>Install your signature</StepHeading>
       <StepIntro>
-        Head back to your Signature Hound tab. Hit the <strong>Install</strong> button
-        — it'll walk you through adding the signature to Gmail, Outlook, or Apple Mail.
+        Go back to Signature Hound and hit <strong>Install</strong>.
       </StepIntro>
 
       <div className="mb-ds-06">
@@ -900,22 +860,19 @@ function InstallStep({ onNext, onBack }: { onNext: () => void; onBack: () => voi
 
       <Card>
         <CardContent className="pt-ds-06">
-          <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">
-            What to do in Signature Hound
-          </div>
           <Instructions
             steps={[
-              'Click the Install button at the top of your signature.',
-              'Choose your mail client — Gmail, Outlook, Apple Mail, and others are all supported.',
-              'Follow the on-screen steps. Gmail uses a one-click OAuth flow; others guide you through a paste or file method.',
-              'Once installed, send yourself a test email to confirm it looks right.',
+              'In Signature Hound, click Install.',
+              'Choose your mail client.',
+              'Follow the steps — Gmail is one-click, others walk you through copy-paste.',
+              'Send yourself a test email.',
             ]}
           />
           <DocsLink href="https://signaturehound.com/help" />
         </CardContent>
       </Card>
 
-      <NavBar onBack={onBack} onNext={onNext} nextLabel="Installed — I'm done" />
+      <NavBar onBack={onBack} onNext={onNext} nextLabel="Done" />
     </div>
   )
 }
@@ -966,21 +923,17 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
         You're set.
       </h1>
       <p className="text-surface-fg-muted mx-auto mb-ds-08 max-w-xl text-ds-lg leading-relaxed">
-        Your Avinity signature is installed. Send yourself a test email to confirm it
-        renders correctly across desktop and mobile.
+        Send yourself a test email to confirm everything looks right.
       </p>
 
       <Card className="mx-auto mb-ds-08 max-w-xl text-left">
         <CardContent className="pt-ds-06">
-          <div className="text-surface-fg mb-ds-03 text-ds-sm font-bold">
-            Quick checks
-          </div>
           <ul className="space-y-ds-02 text-ds-sm">
             {[
-              'Open Gmail / Outlook on desktop — does the signature look right?',
-              "Open it on your phone — still looking sharp?",
-              'Send a test email to yourself, then open it in the email client your clients use most.',
-              'Click your own "Book a call" button to confirm the link works.',
+              'Desktop — does the signature look right?',
+              'Mobile — still looking sharp?',
+              'Send a test, open in the client your contacts use.',
+              '"Book a call" link works.',
             ].map((c, i) => (
               <li key={i} className="flex items-start gap-ds-02">
                 <span style={{ color: 'var(--avinity-dark)' }}>✓</span>
@@ -997,12 +950,12 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
           startIcon={<IconMail size={18} />}
           style={{ background: 'var(--avinity-dark)', color: '#fff' }}
         >
-          <a href="mailto:?subject=Testing my new Avinity signature&body=Just a test of my new email signature.%0A%0ALet me know if it looks alright.">
-            Send myself a test email
+          <a href="mailto:?subject=Testing my new Avinity signature&body=Just a test.">
+            Send test email
           </a>
         </Button>
         <Button variant="ghost" onClick={onRestart} startIcon={<IconRefresh size={18} />}>
-          Run through again
+          Start over
         </Button>
       </div>
     </div>
