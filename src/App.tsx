@@ -919,6 +919,12 @@ function SignatureHoundStep({
         In the Profile Picture field, upload the transparent PNG you downloaded in Step 3.
       </Alert>
 
+      <div className="mt-ds-04">
+        <Alert color="info" title="The preview in Signature Hound may look off — that's normal">
+          The signature is designed for email clients, not the Signature Hound editor. Once installed in Gmail, Outlook, or Apple Mail it will render correctly.
+        </Alert>
+      </div>
+
       <NavBar
         onBack={onBack}
         onNext={openAndAdvance}
