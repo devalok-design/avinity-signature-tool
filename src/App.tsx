@@ -11,9 +11,10 @@ import {
 
 type Stage = 'idle' | 'cropping' | 'processing' | 'ready'
 
-const TARGET_W = 340 // 2x for retina
-const TARGET_H = 370
+const TARGET_W = 180
+const TARGET_H = 186
 const ASPECT = TARGET_W / TARGET_H
+const BOTTOM_LEFT_RADIUS = 69 // px — matches the signature's portrait curve
 
 export function App() {
   const [stage, setStage] = useState<Stage>('idle')
@@ -80,7 +81,9 @@ export function App() {
           }
         },
       })
-      const url = URL.createObjectURL(cutoutBlob)
+      setProgress('Rounding bottom-left corner…')
+      const roundedBlob = await applyBottomLeftRadius(cutoutBlob, BOTTOM_LEFT_RADIUS)
+      const url = URL.createObjectURL(roundedBlob)
       setCutoutUrl(url)
       setStage('ready')
     } catch (err) {
@@ -442,6 +445,42 @@ async function cropImage(src: string, area: Area): Promise<Blob> {
       else reject(new Error('toBlob failed'))
     }, 'image/png')
   })
+}
+
+// Carves a rounded corner out of the bottom-left of the cutout PNG and
+// re-exports as transparent PNG. Mirrors the curve baked into the signature
+// design so the portrait flows into the logo behind it instead of cutting
+// off as a hard rectangle.
+async function applyBottomLeftRadius(blob: Blob, radius: number): Promise<Blob> {
+  const url = URL.createObjectURL(blob)
+  try {
+    const img = await loadImage(url)
+    const w = img.naturalWidth
+    const h = img.naturalHeight
+    const canvas = document.createElement('canvas')
+    canvas.width = w
+    canvas.height = h
+    const ctx = canvas.getContext('2d')
+    if (!ctx) throw new Error('Canvas context failed')
+    ctx.beginPath()
+    ctx.moveTo(0, 0)
+    ctx.lineTo(w, 0)
+    ctx.lineTo(w, h)
+    ctx.lineTo(radius, h)
+    ctx.quadraticCurveTo(0, h, 0, h - radius)
+    ctx.lineTo(0, 0)
+    ctx.closePath()
+    ctx.clip()
+    ctx.drawImage(img, 0, 0)
+    return await new Promise((resolve, reject) => {
+      canvas.toBlob((b) => {
+        if (b) resolve(b)
+        else reject(new Error('toBlob failed'))
+      }, 'image/png')
+    })
+  } finally {
+    URL.revokeObjectURL(url)
+  }
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
