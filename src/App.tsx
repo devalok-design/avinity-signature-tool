@@ -51,8 +51,8 @@ export function App() {
       setError('Please upload a JPG, PNG, or WebP image.')
       return
     }
-    if (file.size > 12 * 1024 * 1024) {
-      setError('Image is too large (max 12MB).')
+    if (file.size > 50 * 1024 * 1024) {
+      setError('Image is too large (max 50MB).')
       return
     }
     const url = URL.createObjectURL(file)
@@ -197,7 +197,7 @@ function UploadStep({
           Drop your photo here
         </div>
         <div className="text-avinity-ink/60 mb-6 text-sm">
-          or pick one from your computer · JPG, PNG, WebP · up to 12MB
+          or pick one from your computer · JPG, PNG, WebP · up to 50MB
         </div>
         <button
           onClick={() => inputRef.current?.click()}
