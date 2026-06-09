@@ -1,18 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@devalok/shilp-sutra/css";
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/* Avinity brand tokens — used via inline styles or arbitrary classes */
 :root {
   --avinity-dark: #015A66;
   --avinity-cyan: #1FA9B3;
   --avinity-blue: #CFE6F7;
   --avinity-ink: #0A2A2F;
-  --avinity-bg: #F5F9FA;
 }
 
 html, body, #root { height: 100%; }
+
+body {
+  font-family: 'Inter', system-ui, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
 /* react-easy-crop crop area overlay — guides user to align head + shoulders */
 .crop-guide {
@@ -29,10 +33,4 @@ html, body, #root { height: 100%; }
   pointer-events: none;
   opacity: 0.55;
   mix-blend-mode: multiply;
-}
-body {
-  background: var(--avinity-bg);
-  color: var(--avinity-ink);
-  font-family: 'Inter', system-ui, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
