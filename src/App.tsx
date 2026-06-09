@@ -305,6 +305,17 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       </div>
 
       <NavBar onNext={onNext} nextLabel="Let's go" hideBack />
+
+      <div className="mt-ds-04 text-center">
+        <a
+          href={SH_TEMPLATE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="text-surface-fg-muted hover:text-accent-9 text-ds-sm hover:underline"
+        >
+          Already have your photo ready? Skip to Signature Hound →
+        </a>
+      </div>
     </div>
   )
 }
