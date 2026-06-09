@@ -57,10 +57,7 @@ export function App() {
 
       <div className="border-surface-border-subtle bg-surface-overlay border-b">
         <div className="mx-auto max-w-6xl px-ds-06 py-ds-04">
-          <Stepper
-            activeStep={stepIdx}
-            onStepClick={(i) => i < stepIdx && setStepIdx(i)}
-          >
+          <Stepper activeStep={stepIdx}>
             {STEPS.map((s) => (
               <Step key={s.id} label={s.label} />
             ))}
@@ -173,14 +170,14 @@ function NavBar({
   return (
     <div className="mt-ds-10 flex items-center justify-between">
       {!hideBack && onBack ? (
-        <Button variant="ghost" onClick={onBack} startIcon={<IconArrowLeft />}>
+        <Button variant="ghost" onClick={onBack} startIcon={<IconArrowLeft size={18} />}>
           Back
         </Button>
       ) : (
         <span />
       )}
       {onNext && (
-        <Button onClick={onNext} disabled={nextDisabled} endIcon={<IconArrowRight />}>
+        <Button onClick={onNext} disabled={nextDisabled} endIcon={<IconArrowRight size={18} />}>
           {nextLabel}
         </Button>
       )}
@@ -234,7 +231,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       </div>
 
       <Card>
-        <CardContent>
+        <CardContent className="pt-ds-06">
           <div className="text-surface-fg mb-ds-03 text-ds-base font-semibold">
             What you'll do
           </div>
@@ -265,7 +262,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <Card>
-      <CardContent>
+      <CardContent className="pt-ds-06">
         <div className="text-surface-fg-subtle text-ds-xs font-semibold tracking-wide uppercase">
           {label}
         </div>
@@ -338,7 +335,7 @@ function TipCard({
   const isGood = tone === 'good'
   return (
     <Card color={isGood ? 'success' : 'error'}>
-      <CardContent>
+      <CardContent className="pt-ds-06">
         <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">{title}</div>
         <ul className="space-y-ds-02">
           {items.map((item, i) => (
@@ -596,7 +593,7 @@ function CropPanel({
 }) {
   return (
     <div className="space-y-ds-04">
-      <Card>
+      <Card className="overflow-hidden">
         <div className="bg-surface-inverted relative" style={{ height: 480 }}>
           <Cropper
             image={sourceUrl}
@@ -625,12 +622,12 @@ function CropPanel({
         </div>
       </Card>
       <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={onReset} startIcon={<IconRefresh />}>
+        <Button variant="ghost" onClick={onReset} startIcon={<IconRefresh size={18} />}>
           Pick a different photo
         </Button>
         <Button
           onClick={onProcess}
-          startIcon={<IconSparkles />}
+          startIcon={<IconSparkles size={18} />}
           style={{ background: 'var(--avinity-dark)', color: '#fff' }}
         >
           Remove background
@@ -643,7 +640,7 @@ function CropPanel({
 function ProcessingPanel({ progress }: { progress: string }) {
   return (
     <Card>
-      <CardContent>
+      <CardContent className="pt-ds-06">
         <div className="flex flex-col items-center justify-center px-ds-06 py-ds-12">
           <div className="bg-accent-3 text-accent-9 mb-ds-05 rounded-full p-ds-04">
             <IconSparkles size={32} strokeWidth={1.75} className="animate-pulse" />
@@ -702,12 +699,12 @@ function ReadyPanel({
       </div>
 
       <div className="flex flex-col items-stretch gap-ds-03 sm:flex-row sm:items-center sm:justify-between">
-        <Button variant="ghost" onClick={onReset} startIcon={<IconRefresh />}>
+        <Button variant="ghost" onClick={onReset} startIcon={<IconRefresh size={18} />}>
           Start over with a different photo
         </Button>
         <Button
           onClick={onDownload}
-          startIcon={<IconDownload />}
+          startIcon={<IconDownload size={18} />}
           style={{ background: 'var(--avinity-dark)', color: '#fff' }}
         >
           {hasDownloaded ? 'Download again' : 'Download PNG'}
@@ -729,6 +726,7 @@ function ReadyPanel({
 
 function SignaturePreview({ cutoutUrl }: { cutoutUrl: string }) {
   return (
+    <div className="overflow-x-auto">
     <div className="origin-top-left scale-90" style={{ width: 600 }}>
       <div
         style={{
@@ -779,6 +777,7 @@ function SignaturePreview({ cutoutUrl }: { cutoutUrl: string }) {
         </div>
       </div>
     </div>
+    </div>
   )
 }
 
@@ -805,7 +804,7 @@ function SignatureHoundStep({
       <div className="mb-ds-08">
         <Button
           asChild
-          startIcon={<IconExternalLink />}
+          startIcon={<IconExternalLink size={18} />}
           style={{ background: 'var(--avinity-dark)', color: '#fff' }}
         >
           <a href={SH_TEMPLATE_URL} target="_blank" rel="noreferrer">
@@ -815,7 +814,7 @@ function SignatureHoundStep({
       </div>
 
       <Card>
-        <CardContent>
+        <CardContent className="pt-ds-06">
           <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">
             Fill these fields
           </div>
@@ -890,7 +889,7 @@ function InstallStep({ onNext, onBack }: { onNext: () => void; onBack: () => voi
       <div className="mb-ds-06">
         <Button
           asChild
-          startIcon={<IconExternalLink />}
+          startIcon={<IconExternalLink size={18} />}
           style={{ background: 'var(--avinity-dark)', color: '#fff' }}
         >
           <a href={SH_TEMPLATE_URL} target="_blank" rel="noreferrer">
@@ -900,7 +899,7 @@ function InstallStep({ onNext, onBack }: { onNext: () => void; onBack: () => voi
       </div>
 
       <Card>
-        <CardContent>
+        <CardContent className="pt-ds-06">
           <div className="text-surface-fg mb-ds-04 text-ds-base font-bold">
             What to do in Signature Hound
           </div>
@@ -972,7 +971,7 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
       </p>
 
       <Card className="mx-auto mb-ds-08 max-w-xl text-left">
-        <CardContent>
+        <CardContent className="pt-ds-06">
           <div className="text-surface-fg mb-ds-03 text-ds-sm font-bold">
             Quick checks
           </div>
@@ -995,14 +994,14 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
       <div className="flex flex-col items-center justify-center gap-ds-03 sm:flex-row">
         <Button
           asChild
-          startIcon={<IconMail />}
+          startIcon={<IconMail size={18} />}
           style={{ background: 'var(--avinity-dark)', color: '#fff' }}
         >
           <a href="mailto:?subject=Testing my new Avinity signature&body=Just a test of my new email signature.%0A%0ALet me know if it looks alright.">
             Send myself a test email
           </a>
         </Button>
-        <Button variant="ghost" onClick={onRestart} startIcon={<IconRefresh />}>
+        <Button variant="ghost" onClick={onRestart} startIcon={<IconRefresh size={18} />}>
           Run through again
         </Button>
       </div>
