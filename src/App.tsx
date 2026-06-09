@@ -141,24 +141,15 @@ function Header() {
           <img src={DEVALOK_WORDMARK_URL} alt="Devalok" className="h-12" />
         </a>
         <div className="text-surface-fg-subtle select-none">×</div>
-        <div className="flex items-center gap-ds-02">
-          <img
-            src="/avinity-mark.svg"
-            alt=""
-            aria-hidden="true"
-            className="h-10 w-10"
-            style={{
-              filter:
-                'brightness(0) saturate(100%) invert(20%) sepia(54%) saturate(917%) hue-rotate(151deg) brightness(95%) contrast(101%)',
-            }}
-          />
-          <div
-            className="text-ds-sm font-semibold"
-            style={{ color: 'var(--avinity-dark)' }}
-          >
-            Avinity Health
-          </div>
-        </div>
+        <img
+          src="/avinity-lockup.svg"
+          alt="Avinity Health"
+          className="h-9"
+          style={{
+            filter:
+              'brightness(0) saturate(100%) invert(20%) sepia(54%) saturate(917%) hue-rotate(151deg) brightness(95%) contrast(101%)',
+          }}
+        />
       </div>
     </header>
   )
