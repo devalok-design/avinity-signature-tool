@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@devalok/shilp-sutra':
-        specifier: ^0.42.1
-        version: 0.42.1(@tabler/icons-react@3.44.0(react@19.2.7))(framer-motion@12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.0)
+        specifier: ^0.45.1
+        version: 0.45.1(@tabler/icons-react@3.44.0(react@19.2.7))(framer-motion@12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.0)
       '@imgly/background-removal':
         specifier: ^1.7.0
         version: 1.7.0(onnxruntime-web@1.21.0)
@@ -143,8 +143,8 @@ packages:
     resolution: {integrity: sha512-4zBIxpPzowiZpusoFkyGVwakdRJUyuH5PxQ/PrqghfdFWWasvnCdPfQXHrenDai+gyLARulZjZowCOj6fjT4pA==}
     engines: {node: '>=6.9.0'}
 
-  '@devalok/shilp-sutra@0.42.1':
-    resolution: {integrity: sha512-QA5zaNp8PAMd94/cc7pcIRXULhUOLUo9SpMAdtlh5HOahx/NrR5ZOk3JXgj74RChG5jdApse1c3jpfCdxYmBDA==}
+  '@devalok/shilp-sutra@0.45.1':
+    resolution: {integrity: sha512-ylmaV5t1X5aFJXwDai9iviOk+FpkeaMOma5x3zOvBP3Q3gbIyKMv8wAa0WrqButd41TLX3L/ZdNLSWJVIOSuVQ==}
     peerDependencies:
       '@emoji-mart/data': ^1.0.0
       '@emoji-mart/react': ^1.0.0
@@ -1190,7 +1190,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@devalok/shilp-sutra@0.42.1(@tabler/icons-react@3.44.0(react@19.2.7))(framer-motion@12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.0)':
+  '@devalok/shilp-sutra@0.45.1(@tabler/icons-react@3.44.0(react@19.2.7))(framer-motion@12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.0)':
     dependencies:
       '@tabler/icons-react': 3.44.0(react@19.2.7)
       class-variance-authority: 0.7.1

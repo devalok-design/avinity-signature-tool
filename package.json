@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@devalok/shilp-sutra": "^0.42.1",
+    "@devalok/shilp-sutra": "^0.45.1",
     "@imgly/background-removal": "^1.7.0",
     "@tabler/icons-react": "^3.24.0",
     "canvas-confetti": "^1.9.4",
