@@ -255,18 +255,18 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
           <div className="bg-surface-overlay border border-surface-border rounded-surface overflow-hidden">
             {/* Mock email chrome */}
             <div className="border-surface-border-subtle bg-surface-base flex items-center gap-ds-02 border-b px-ds-05 py-ds-03">
-              <div className="flex gap-ds-02b">
+              <div className="flex gap-1.5">
                 <span className="h-3 w-3 rounded-pill bg-[#FF5F57]" />
                 <span className="h-3 w-3 rounded-pill bg-[#FEBC2E]" />
                 <span className="h-3 w-3 rounded-pill bg-[#28C840]" />
               </div>
-              <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded-control px-ds-05 py-ds-02 text-ds-xs">
+              <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded-control px-ds-05 py-1 text-ds-xs">
                 Gmail — New Message
               </div>
             </div>
             {/* Email body */}
             <div className="px-ds-06 pt-ds-05 pb-ds-05">
-              <div className="text-surface-fg-muted mb-ds-04 space-y-ds-02 border-b border-dashed pb-ds-04 text-ds-sm">
+              <div className="text-surface-fg-muted mb-ds-04 space-y-1 border-b border-dashed pb-ds-04 text-ds-sm">
                 <div><span className="font-semibold">To:</span> sarah.miller@gmail.com</div>
                 <div><span className="font-semibold">Subject:</span> Your care plan + next steps</div>
               </div>
@@ -319,7 +319,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
         >
           Already have your photo ready? Skip to Signature Hound →
         </a>
-        <p className="text-surface-fg-subtle mt-ds-02 text-ds-xs">
+        <p className="text-surface-fg-subtle mt-1 text-ds-xs">
           You'll need to upload your portrait PNG manually in the Profile Picture field.
         </p>
       </div>
@@ -394,7 +394,7 @@ function TipCard({
           {items.map((item, i) => (
             <li key={i} className="flex items-start gap-ds-02 text-ds-base">
               <span
-                className={`mt-ds-01 font-bold ${isGood ? 'text-success-9' : 'text-error-9'}`}
+                className={`mt-0.5 font-bold ${isGood ? 'text-success-9' : 'text-error-9'}`}
               >
                 {isGood ? '✓' : '✕'}
               </span>
@@ -987,7 +987,7 @@ function Instructions({ steps }: { steps: string[] }) {
           <span className="bg-accent-9 text-accent-fg flex h-7 w-7 shrink-0 items-center justify-center rounded-pill text-ds-xs font-bold">
             {i + 1}
           </span>
-          <span className="text-surface-fg-muted pt-ds-01 text-ds-base leading-relaxed">
+          <span className="text-surface-fg-muted pt-0.5 text-ds-base leading-relaxed">
             {step}
           </span>
         </li>
