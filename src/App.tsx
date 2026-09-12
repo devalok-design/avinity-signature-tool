@@ -21,7 +21,7 @@ import {
 
 const SH_TEMPLATE_URL = 'https://signaturehound.com/signature/lkc2glmpv2p3kf'
 const DEVALOK_WORDMARK_URL =
-  'https://devalok-public-assets.s3.ap-south-1.amazonaws.com/brand/devalok/logos/wordmark-brand.svg'
+  'https://assets.devalok.in/brand/devalok/logos/wordmark-brand.svg'
 const AVINITY_COLORS = ['#015A66', '#1FA9B3', '#CFE6F7', '#ffffff']
 
 const STEPS = [
@@ -69,7 +69,7 @@ export function App() {
   if (isMobile) {
     return (
       <div className="bg-surface-base flex min-h-screen flex-col items-center justify-center px-ds-06 text-center">
-        <div className="bg-accent-3 text-accent-9 mx-auto mb-ds-06 flex h-16 w-16 items-center justify-center rounded-full">
+        <div className="bg-accent-3 text-accent-9 mx-auto mb-ds-06 flex h-16 w-16 items-center justify-center rounded-pill">
           <IconDeviceDesktop size={32} />
         </div>
         <h1 className="text-surface-fg mb-ds-03 text-ds-2xl font-bold tracking-tight">
@@ -197,7 +197,7 @@ function NavBar({
   return (
     <div className="mt-ds-10 flex items-center justify-between">
       {!hideBack && onBack ? (
-        <Button variant="ghost" onClick={onBack} startIcon={<IconArrowLeft size={18} />}>
+        <Button variant="soft" onClick={onBack} startIcon={<IconArrowLeft size={18} />}>
           Back
         </Button>
       ) : (
@@ -252,15 +252,15 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
           <p className="text-surface-fg-muted mb-ds-03 text-ds-sm font-medium">
             What you'll have at the end
           </p>
-          <div className="bg-surface-overlay border-surface-border rounded-xl overflow-hidden shadow-md">
+          <div className="bg-surface-overlay border border-surface-border rounded-surface overflow-hidden">
             {/* Mock email chrome */}
             <div className="border-surface-border-subtle bg-surface-base flex items-center gap-ds-02 border-b px-ds-05 py-ds-03">
               <div className="flex gap-1.5">
-                <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
-                <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
-                <span className="h-3 w-3 rounded-full bg-[#28C840]" />
+                <span className="h-3 w-3 rounded-pill bg-[#FF5F57]" />
+                <span className="h-3 w-3 rounded-pill bg-[#FEBC2E]" />
+                <span className="h-3 w-3 rounded-pill bg-[#28C840]" />
               </div>
-              <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded-md px-ds-05 py-1 text-ds-xs">
+              <div className="text-surface-fg-subtle bg-surface-overlay mx-auto rounded-control px-ds-05 py-1 text-ds-xs">
                 Gmail — New Message
               </div>
             </div>
@@ -294,8 +294,8 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
               { n: 3, title: 'Fill in your details', desc: 'Name, title, contact in Signature Hound' },
               { n: 4, title: 'Install in your email', desc: 'Gmail, Outlook, Apple Mail' },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-surface-overlay border-surface-border flex gap-ds-04 rounded-xl border p-ds-05">
-                <span className="bg-accent-3 text-accent-9 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ds-sm font-bold">
+              <div key={n} className="bg-surface-overlay border-surface-border flex gap-ds-04 rounded-surface border p-ds-05">
+                <span className="bg-accent-3 text-accent-9 flex h-8 w-8 shrink-0 items-center justify-center rounded-pill text-ds-sm font-bold">
                   {n}
                 </span>
                 <div>
@@ -600,7 +600,7 @@ function UploadZone({
       }}
     >
       <div className="flex flex-col items-center justify-center px-ds-06 py-ds-12">
-        <div className="bg-accent-3 text-accent-9 mb-ds-05 rounded-full p-ds-04">
+        <div className="bg-accent-3 text-accent-9 mb-ds-05 rounded-pill p-ds-04">
           <IconUpload size={32} strokeWidth={1.75} />
         </div>
         <div className="text-surface-fg mb-ds-02 text-ds-lg font-semibold">
@@ -675,7 +675,7 @@ function CropPanel({
         </div>
       </Card>
       <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={onReset} startIcon={<IconRefresh size={18} />}>
+        <Button variant="soft" onClick={onReset} startIcon={<IconRefresh size={18} />}>
           Pick a different photo
         </Button>
         <Button
@@ -706,7 +706,7 @@ function ProcessingPanel({ progress }: { progress: string }) {
     <Card>
       <CardContent className="pt-ds-06">
         <div className="flex flex-col items-center justify-center px-ds-06 py-ds-10">
-          <div className="bg-accent-3 text-accent-9 mb-ds-05 rounded-full p-ds-04">
+          <div className="bg-accent-3 text-accent-9 mb-ds-05 rounded-pill p-ds-04">
             <IconSparkles size={32} strokeWidth={1.75} className="animate-pulse" />
           </div>
           <div className="text-surface-fg mb-ds-01 text-ds-lg font-semibold">
@@ -719,9 +719,9 @@ function ProcessingPanel({ progress }: { progress: string }) {
           )}
           {stage.pct !== null ? (
             <div className="w-full max-w-xs">
-              <div className="bg-surface-border-subtle mb-ds-02 h-2 w-full overflow-hidden rounded-full">
+              <div className="bg-surface-border-subtle mb-ds-02 h-2 w-full overflow-hidden rounded-pill">
                 <div
-                  className="h-full rounded-full transition-all duration-300"
+                  className="h-full rounded-pill transition-[width] duration-300"
                   style={{ width: `${stage.pct}%`, background: 'var(--avinity-dark)' }}
                 />
               </div>
@@ -729,9 +729,9 @@ function ProcessingPanel({ progress }: { progress: string }) {
             </div>
           ) : isProcessing ? (
             <div className="w-full max-w-xs">
-              <div className="bg-surface-border-subtle h-2 w-full overflow-hidden rounded-full">
+              <div className="bg-surface-border-subtle h-2 w-full overflow-hidden rounded-pill">
                 <div
-                  className="h-full w-full animate-pulse rounded-full"
+                  className="h-full w-full animate-pulse rounded-pill"
                   style={{ background: 'var(--avinity-dark)', opacity: 0.6 }}
                 />
               </div>
@@ -785,7 +785,7 @@ function ReadyPanel({
       </div>
 
       <div className="flex flex-col items-stretch gap-ds-03 sm:flex-row sm:items-center sm:justify-between">
-        <Button variant="ghost" onClick={onReset} startIcon={<IconRefresh size={18} />}>
+        <Button variant="soft" onClick={onReset} startIcon={<IconRefresh size={18} />}>
           Start over with a different photo
         </Button>
         <Button
@@ -984,7 +984,7 @@ function Instructions({ steps }: { steps: string[] }) {
     <ol className="space-y-ds-04 mb-ds-05">
       {steps.map((step, i) => (
         <li key={i} className="flex items-start gap-ds-04">
-          <span className="bg-accent-9 text-accent-fg flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ds-xs font-bold">
+          <span className="bg-accent-9 text-accent-fg flex h-7 w-7 shrink-0 items-center justify-center rounded-pill text-ds-xs font-bold">
             {i + 1}
           </span>
           <span className="text-surface-fg-muted pt-0.5 text-ds-base leading-relaxed">
@@ -1029,7 +1029,7 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
 
   return (
     <div className="text-center">
-      <div className="bg-accent-3 text-accent-9 mx-auto mb-ds-05 flex h-16 w-16 items-center justify-center rounded-full">
+      <div className="bg-accent-3 text-accent-9 mx-auto mb-ds-05 flex h-16 w-16 items-center justify-center rounded-pill">
         <IconCheck size={32} strokeWidth={3} />
       </div>
       <h1 className="text-surface-fg mb-ds-04 text-ds-4xl font-bold tracking-tight">
@@ -1067,7 +1067,7 @@ function DoneStep({ onRestart }: { onRestart: () => void }) {
             Send test email
           </a>
         </Button>
-        <Button variant="ghost" onClick={onRestart} startIcon={<IconRefresh size={18} />}>
+        <Button variant="soft" onClick={onRestart} startIcon={<IconRefresh size={18} />}>
           Start over
         </Button>
       </div>
